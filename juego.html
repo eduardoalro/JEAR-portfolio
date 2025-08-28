@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina el Número</title>
+    <!-- Enlace a tu archivo CSS compilado desde SCSS -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/juego.css" />
+    <script src="scripts/juego.js" defer></script>
+</head>
+<body>
+
+    <main class="game-card">
+        <h1 class="game-title">Adivina el Número</h1>
+        <p class="game-subtitle">Estoy pensando en un número entre 1 y 100. ¿Puedes adivinarlo?</p>
+
+        <form id="gameForm" class="game-form">
+            <div class="input-group">
+                <label for="guess">Introduce tu número:</label>
+                <input type="number" id="guess" min="1" max="100" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Adivinar</button>
+            <button type="button" id="newGameBtn" class="btn btn-secondary">Reiniciar Juego</button>
+        </form>
+
+        <div id="results" class="results-area">
+            <p id="message" class="game-message"></p>
+            <p id="attempts" class="game-attempts"></p>
+        </div>
+    </main>
+
+    <!-- Botón para regresar al portafolio -->
+    <a href="index.html" class="btn btn-secondary back-to-portfolio">Regresar al Portafolio</a>
+    
+    <!-- Enlace a tu archivo JavaScript -->
+    <script src="scripts/guess-the-number.js"></script>
+</body>
+</html>

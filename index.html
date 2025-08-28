@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>José Eduardo - Portafolio</title>
+    <!-- Aquí enlazarás tu archivo CSS compilado a partir de SCSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+
+    <!-- Sección de Cabecera y Resumen (semántica: <header>) -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-info">
+                <h1 class="header-name">J. Eduardo Alvarez</h1>
+                <p class="header-title">Desarrollador Front-end & UX/UI</p>
+            </div>
+            <nav class="header-nav">
+                <a href="#" class="btn btn-primary">Descargar CV</a>
+                <a href="#proyectos" class="btn btn-secondary">Mis Proyectos</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección de Habilidades (semántica: <section>) -->
+        <section id="habilidades" class="skills-section">
+            <h2 class="section-title">Habilidades Técnicas</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=HTML" alt="HTML Icono" class="skill-icon">
+                    <span>HTML5</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=CSS" alt="CSS Icono" class="skill-icon">
+                    <span>CSS3</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=JS" alt="JavaScript Icono" class="skill-icon">
+                    <span>JavaScript</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=BS" alt="Bootstrap Icono" class="skill-icon">
+                    <span>Bootstrap</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=SASS" alt="SASS Icono" class="skill-icon">
+                    <span>SASS</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=Git" alt="Git Icono" class="skill-icon">
+                    <span>Git & GitHub</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=UI/UX" alt="UI/UX Icono" class="skill-icon">
+                    <span>UI/UX</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de Proyectos (semántica: <section>) -->
+        <section id="proyectos" class="projects-section">
+            <h2 class="section-title">Proyectos Personales</h2>
+            <div class="projects-grid">
+                <!-- Proyecto 1 -->
+                <div class="project-card">
+                    <h3 class="project-title">Calculadora de IMC</h3>
+                    <p class="project-description">Una aplicación web sencilla para calcular el índice de masa corporal y dar una recomendación de salud.</p>
+                    <a href="calculator.html" class="project-link">Ver Proyecto &rarr;</a>
+                </div>
+                <!-- Proyecto 2 -->
+                <div class="project-card">
+                    <h3 class="project-title">Landing Page Ficticia</h3>
+                    <p class="project-description">Página de aterrizaje para un servicio de streaming de música ficticio, con un diseño moderno y responsive.</p>
+                    <a href="landingPage.html" class="project-link">Ver Proyecto &rarr;</a>
+                </div>
+                <!-- Proyecto 3 -->
+                <div class="project-card">
+                    <h3 class="project-title">Adivina el numero</h3>
+                    <p class="project-description">Breve descripción de otro proyecto que te gustaría añadir.</p>
+                    <a href="juego.html" class="project-link">Ver Proyecto &rarr;</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Sección de Contacto (semántica: <footer>) -->
+    <footer class="footer">
+        <p class="footer-text">© 2024 José Eduardo. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

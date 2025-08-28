@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/calculator.css" />
+    <script src="scripts/calculator-functions.js" defer></script>
+</head>
+<body>
+
+    <main class="calculator-card">
+        <h1 class="title">Calculadora de IMC</h1>
+        <p class="subtitle">Introduce tu peso y altura a continuación para calcular tu Índice de Masa Corporal.</p>
+
+        <form id="bmiForm">
+            <div class="input-group">
+                <label for="weight">Peso (kg)</label>
+                <input type="number" id="weight" step="0.1" required>
+            </div>
+            <div class="input-group">
+                <label for="height">Altura (cm)</label>
+                <input type="number" id="height" step="1" required>
+            </div>
+            <button type="submit" class="btn">Calcular IMC</button>
+        </form>
+
+        <div id="results" class="results-area">
+            <p class="bmi-value" id="bmiValue"></p>
+            <p class="bmi-message" id="bmiMessage"></p>
+        </div>
+    </main>
+
+    <!-- Botón para regresar al portafolio -->
+    <a href="index.html" class="btn btn-secondary back-to-portfolio">Regresar al Portafolio</a>
+
+    <!-- Enlace a tu archivo JavaScript -->
+    <script src="scripts/imc.js"></script>
+</body>
+</html>
