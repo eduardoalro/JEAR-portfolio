@@ -1,0 +1,206 @@
+// 1. VARIABLES
+// Definición de variables globales como colores, fuentes, etc.
+$primary-color: #2563eb; //botones y enlaces
+$secondary-color: #3b82f6; //efectos hover
+$dark-text-color: #1f2937;
+$light-text-color: #4b5563;
+$background-color: #f3f4f6;
+$card-bg: #ffffff;
+$light-card-bg: #f9fafb;
+$shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$font-stack: 'Inter', sans-serif;
+
+// 2. BASE
+// Estilos base para el cuerpo y otros elementos generales
+body {
+    font-family: $font-stack;
+    background-color: $background-color;
+    color: $dark-text-color;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// 3. COMPONENTS
+// Estilos para componentes reutilizables como botones y tarjetas
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px; /* rounded-full */
+    font-weight: 600; /* font-semibold */
+    transition: all 0.3s ease-in-out;
+    transform: scale(1);
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    &-primary {
+        background-color: $primary-color;
+        color: $card-bg;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        &:hover {
+            background-color: $secondary-color;
+        }
+    }
+    &-secondary {
+        color: $primary-color;
+        &:hover {
+            color: $secondary-color;
+            text-decoration: underline;
+        }
+    }
+}
+
+.card {
+    background-color: $light-card-bg;
+    padding: 1.5rem;
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s ease-in-out;
+    &:hover {
+        box-shadow: $shadow;
+    }
+}
+
+// 4. LAYOUTS
+// Estilos para la estructura general de las secciones
+.header {
+    background-color: $card-bg;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 0.75rem;
+    margin: 2rem 1rem;
+    padding: 2rem 3rem;
+    @media (min-width: 768px) {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 3rem;
+    }
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
+    }
+    
+    &-info {
+        text-align: center;
+        @media (min-width: 768px) {
+            text-align: left;
+        }
+    }
+    &-name {
+        font-size: 2.25rem;
+        font-weight: 800;
+        color: $primary-color;
+        margin-bottom: 0.5rem;
+        @media (min-width: 768px) {
+            font-size: 3rem;
+        }
+        @media (min-width: 1024px) {
+            font-size: 3.75rem;
+        }
+    }
+    &-title {
+        font-size: 1.25rem;
+        color: $light-text-color;
+        font-weight: 600;
+        @media (min-width: 768px) {
+            font-size: 1.5rem;
+        }
+    }
+    &-nav {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        @media (min-width: 768px) {
+            margin-top: 0;
+            flex-direction: row;
+            gap: 1rem;
+        }
+    }
+}
+
+.skills-section {
+    @extend .header; /* Reutiliza los estilos del header para el contenedor */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        text-align: center;
+        @media (min-width: 640px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        @media (min-width: 1024px) {
+            grid-template-columns: repeat(5, 1fr);
+        }
+    }
+    .skill-card {
+        @extend .card;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+    .skill-icon {
+        margin-bottom: 0.5rem;
+    }
+}
+
+.projects-section {
+    @extend .skills-section;
+    .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (min-width: 1024px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    .project-card {
+        @extend .card;
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: $dark-text-color;
+            margin-bottom: 0.5rem;
+        }
+        .project-description {
+            color: $light-text-color;
+            margin-bottom: 1rem;
+        }
+        .project-link {
+            color: $primary-color;
+            font-weight: 600;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.footer {
+    background-color: #111827;
+    color: #ffffff;
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+}

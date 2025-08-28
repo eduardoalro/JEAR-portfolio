@@ -1,0 +1,157 @@
+// Estilos para la Calculadora de IMC
+
+// 1. VARIABLES
+$primary-color: #2563eb;
+$dark-text-color: #1f2937;
+$light-text-color: #4b5563;
+$background-color: #f3f4f6;
+$card-bg: #ffffff;
+$shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$font-stack: 'Inter', sans-serif;
+$success-color: #10b981;
+$warning-color: #fbbf24;
+$danger-color: #ef4444;
+
+// 2. BASE
+body {
+    font-family: $font-stack;
+    background-color: $background-color;
+    color: $dark-text-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 1.5rem;
+}
+
+// 3. COMPONENTS
+.calculator-card {
+    background-color: $card-bg;
+    box-shadow: $shadow;
+    border-radius: 1rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $primary-color;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: $light-text-color;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+    text-align: left;
+    label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+        }
+    }
+}
+
+.btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: $primary-color;
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    &:hover {
+        background-color: darken($primary-color, 10%);
+        transform: translateY(-2px);
+    }
+    
+    &.btn-secondary {
+      background-color: transparent;
+      color: $primary-color;
+      box-shadow: none;
+      border: 2px solid $primary-color;
+      margin-top: 1rem;
+      &:hover {
+          background-color: $primary-color;
+          color: white;
+      }
+    }
+}
+
+.results-area {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+    display: none;
+    &.show {
+        display: block;
+    }
+    .bmi-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    .bmi-message {
+        font-size: 1.125rem;
+        color: $light-text-color;
+    }
+}
+
+// Estilos para el modal de error
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    &.show {
+        display: flex;
+    }
+
+    &-content {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        max-width: 300px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    &-close {
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: #ef4444;
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+    }
+}
