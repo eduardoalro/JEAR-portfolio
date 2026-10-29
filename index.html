@@ -1,115 +1,163 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>José Eduardo - Portafolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/styles.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>José Álvarez | Portafolio Profesional</title>
 
-    <!-- Sección de Cabecera y Resumen (semántica: <header>) -->
+    <!-- FontAwesome para íconos elegantes -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Hoja de estilos compilada desde SCSS -->
+    <link rel="stylesheet" href="styles/styles.css" />
+  </head>
+  <body>
+    <!-- Header / Navbar -->
     <header class="header">
-        <div class="header-container">
-            <div class="header-info">
-                <h1 class="header-name">J. Eduardo Alvarez</h1>
-                <p class="header-title">Desarrollador Front-end & UX/UI</p>
-            </div>
-            <nav class="header-nav">
-                <a href="assets/CV-JEAR-01-2026.pdf" download="CV-JEAR-01-2026.pdf" class="btn btn-primary">Descargar CV</a>
-                <a href="#proyectos" class="btn btn-secondary">Mis Proyectos</a>
-            </nav>
-        </div>
+      <nav class="nav container">
+        <a href="#" class="nav__logo">&lt;JEAR /&gt;</a>
+        <ul class="nav__menu">
+          <li><a href="#demos" class="nav__link">Proyectos</a></li>
+          <li><a href="#galeria" class="nav__link">Galería 3D & Macros</a></li>
+          <li><a href="#contacto" class="nav__link">Contacto</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main>
-        <!-- Sección de Habilidades (semántica: <section>) -->
-        <section id="habilidades" class="skills-section">
-            <h2 class="section-title">Habilidades Técnicas</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=HTML" alt="HTML Icono" class="skill-icon">
-                    <span>HTML5</span>
-                </div>
-                <div class="skill-card">
-                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=CSS" alt="CSS Icono" class="skill-icon">
-                    <span>CSS3</span>
-                </div>
-                <div class="skill-card">
-                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=JS" alt="JavaScript Icono" class="skill-icon">
-                    <span>JavaScript</span>
-                </div>
-                <div class="skill-card">
-                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=BS" alt="Bootstrap Icono" class="skill-icon">
-                    <span>Bootstrap</span>
-                </div>
-                <div class="skill-card">
-                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=SASS" alt="SASS Icono" class="skill-icon">
-                    <span>SASS</span>
-                </div>
-                <div class="skill-card">
-                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=Git" alt="Git Icono" class="skill-icon">
-                    <span>Git & GitHub</span>
-                </div>
-                <div class="skill-card">
-                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=UI/UX" alt="UI/UX Icono" class="skill-icon">
-                    <span>UI/UX</span>
-                </div>
-                <div class="skill-card">
-                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=React" alt="React Icono" class="skill-icon">
-                    <span>React</span>
-                </div>
-                <div class="skill-card">
-                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=Redux" alt="Redux Icono" class="skill-icon">
-                    <span>Redux</span>
-                </div>
-                <div class="skill-card">
-                    <img src="https://placehold.co/60x60/d1d5db/4b5563?text=TS" alt="Typesript Icono" class="skill-icon">
-                    <span>Typescript</span>
-                </div>
+      <!-- Hero Section -->
+      <section class="hero container">
+        <div class="hero__content">
+          <span class="hero__subtitle"
+            >Desarrollo Web & Soluciones Técnicas</span
+          >
+          <h1 class="hero__title">José Álvarez</h1>
+          <p class="hero__description">
+            Especializado en desarrollo web, automatización de procesos y
+            modelado 3D. Creando software funcional y experiencias visuales
+            impactantes.
+          </p>
+
+          <!-- Botones de Acción Directa -->
+          <div class="hero__buttons">
+            <!-- Descarga directa de CV -->
+            <a
+              href="assets/docs/CV_Jose_Alvarez.pdf"
+              download
+              class="btn btn--primary"
+            >
+              <i class="fa-solid fa-file-arrow-down"></i> Descargar CV
+            </a>
+
+            <!-- Enlace directo a WhatsApp -->
+            <a
+              href="https://wa.me/523328320880?text=Hola%20Jos%C3%A9,%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--whatsapp"
+            >
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+
+            <!-- LinkedIn -->
+            <a
+              href="https://www.linkedin.com/in/jose-eduardo-alvarez-robles-194927204/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--social"
+              aria-label="LinkedIn"
+            >
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+
+            <!-- Email -->
+            <a
+              href="mailto:tu_correo@ejemplo.com"
+              class="btn btn--social"
+              aria-label="Correo electrónico"
+            >
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección de Demos Web -->
+      <section id="demos" class="demos container">
+        <h2 class="section__title">Muestras Web Destacadas</h2>
+        <div class="demos__grid">
+          <!-- Demo 1: Llantera (Local) -->
+          <article class="card">
+            <div class="card__body">
+              <h3 class="card__title">Demo Llantera</h3>
+              <p class="card__text">
+                Aplicación interactiva para cotización y catálogo de llantas.
+              </p>
+              <a href="demos/llantera/index.html" class="btn btn--secondary"
+                >Ver Demo en vivo</a
+              >
             </div>
-        </section>
-        
-        <!-- Sección de Proyectos (semántica: <section>) -->
-        <section id="proyectos" class="projects-section">
-            <h2 class="section-title">Proyectos Personales</h2>
-            <div class="projects-grid">
-                <!-- Proyecto 1 -->
-                <div class="project-card" style="display: none;">
-                    <h3 class="project-title">Calculadora de IMC</h3>
-                    <p class="project-description">Una aplicación web sencilla para calcular el índice de masa corporal y dar una recomendación de salud.</p>
-                    <a href="calculator.html" class="project-link">Ver Proyecto &rarr;</a>
-                </div>
-                <!-- Proyecto 2 -->
-                <div class="project-card">
-                    <h3 class="project-title">Landing Page Ficticia</h3>
-                    <p class="project-description">Página de aterrizaje para un servicio de streaming de música ficticio, con un diseño moderno y responsive.</p>
-                    <a href="landingPage.html" class="project-link">Ver Proyecto &rarr;</a>
-                </div>
-                <!-- Proyecto 3 -->
-                <div class="project-card">
-                    <h3 class="project-title">Adivina el numero</h3>
-                    <p class="project-description">Juego interactivo que reta al usuario a adivinar un numero.</p>
-                    <a href="juego.html" class="project-link">Ver Proyecto &rarr;</a>
-                </div>
-                <!-- Proyecto 4 -->
-                <div class="project-card">
-                    <h3 class="project-title">Corporate page</h3>
-                    <p class="project-description">Pagina corporativa 100% funcional.</p>
-                    <a href="https://eduardoalro.github.io/LawCorporation/" class="project-link">Ver Proyecto &rarr;</a>
-                </div>
+          </article>
+
+          <!-- Demo 2: Abogados (Hosteada) -->
+          <article class="card">
+            <div class="card__body">
+              <h3 class="card__title">Sitio de Servicios Legales</h3>
+              <p class="card__text">
+                Plataforma institucional corporativa con diseño elegante y
+                responsivo.
+              </p>
+              <a
+                href="https://tu-link-de-abogados.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn--secondary"
+                >Visitar Sitio</a
+              >
             </div>
-        </section>
+          </article>
+
+          <!-- Demo 3: Muestra de Galería interactiva -->
+          <article class="card">
+            <div class="card__body">
+              <h3 class="card__title">Automatización & Soluciones ERP</h3>
+              <p class="card__text">
+                Herramientas personalizadas, integración de macros e interfaces
+                de control.
+              </p>
+              <a href="#galeria" class="btn btn--secondary"
+                >Ver Galería de Casos</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Galería Dinámica (3D / Excel) -->
+      <section id="galeria" class="gallery container">
+        <h2 class="section__title">Galería de Proyectos (3D & Macros)</h2>
+
+        <!-- Filtros para la Galería -->
+        <div class="gallery__filters">
+          <button class="filter-btn active" data-filter="all">Todos</button>
+          <button class="filter-btn" data-filter="3d">Modelado 3D</button>
+          <button class="filter-btn" data-filter="excel">Excel & Macros</button>
+        </div>
+
+        <!-- Contenedor donde JS inyectará las fotos y descripciones -->
+        <div class="gallery__grid" id="gallery-container">
+          <!-- Se llena con JavaScript desde el JSON -->
+        </div>
+      </section>
     </main>
 
-    <!-- Sección de Contacto (semántica: <footer>) -->
     <footer class="footer">
-        <p class="footer-text">© 2024 José Eduardo. Todos los derechos reservados.</p>
+      <p>&copy; 2026 José Álvarez - Desarrollador Web & Diseñador 3D</p>
     </footer>
 
-</body>
+    <script src="scripts/main.js"></script>
+  </body>
 </html>

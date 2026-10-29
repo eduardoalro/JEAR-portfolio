@@ -1,0 +1,27 @@
+// ==========================================
+// VARIABLES Y CONFIGURACIÓN GLOBAL
+// ==========================================
+
+// Paleta de colores (Tema Oscuro / Profesional)
+$bg-primary: #0f172a; // Fondo principal (Pizarra oscuro)
+$bg-card: #1e293b; // Fondo para tarjetas y contenedores
+$bg-card-hover: #334155; // Estado hover de tarjetas
+$text-primary: #f8fafc; // Texto principal (Blanco suave)
+$text-secondary: #94a3b8; // Texto secundario (Gris legible)
+$accent-color: #38bdf8; // Acento principal (Cyan profesional)
+$border-color: #334155; // Bordes sutiles
+
+// Colores de marca para botones de contacto
+$whatsapp-color: #25d366;
+$linkedin-color: #0e76a8;
+
+// Tipografía
+$font-main:
+  "Segoe UI",
+  system-ui,
+  -apple-system,
+  sans-serif;
+
+// Breakpoints para diseño Responsive (Mobile-First)
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;

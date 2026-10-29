@@ -1,0 +1,16 @@
+[
+  {
+    "id": "excel-01",
+    "category": "excel",
+    "title": "Sistema de Control Logístico / Macros",
+    "description": "Automatización en VBA para gestión de inventarios y reportes dinámicos.",
+    "image": "assets/images/gallery/Test_Logo_Image.jpg"
+  },
+  {
+    "id": "3d-01",
+    "category": "3d",
+    "title": "Escultura Digital & Renders",
+    "description": "Modelado 3D técnico y orgánico optimizado para renderizado y manufactura.",
+    "image": "assets/images/gallery/Test_Logo2_Image.jpg"
+  }
+]
