@@ -1,10 +1,9 @@
 @import "variables";
 
 // ==========================================
-// ESTILOS RESPONSIVE (MOBILE-FIRST)
+// CONFIGURACIÓN RESPONSIVE (MOBILE-FIRST)
 // ==========================================
 
-// Contenedor global base para dispositivos móviles
 .container {
   width: 100%;
   max-width: 1200px;
@@ -12,7 +11,6 @@
   padding: 0 1.25rem;
 }
 
-// Ajustes generales de secciones
 section {
   padding: 3rem 0;
 }
@@ -25,41 +23,7 @@ section {
   font-weight: 700;
 }
 
-// Hero responsive para móviles
-.hero {
-  padding: 4rem 1.25rem 2rem;
-  text-align: center;
-
-  &__subtitle {
-    color: $accent-color;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  &__title {
-    font-size: 2.5rem;
-    color: $text-primary;
-    margin: 0.5rem 0 1rem;
-  }
-
-  &__description {
-    color: $text-secondary;
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    line-height: 1.6;
-  }
-
-  &__buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
-  }
-}
-
-// Grillas base en móvil (1 columna)
+// Grillas base en móviles (1 columna)
 .demos__grid,
 .gallery__grid {
   display: grid;
@@ -67,11 +31,16 @@ section {
   gap: 1.5rem;
 }
 
-// Breakpoint para Tablets (>= 768px)
+// ------------------------------------------
+// BREAKPOINT: TABLETS (>= 768px)
+// ------------------------------------------
 @media (min-width: $breakpoint-tablet) {
   .hero {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
-    padding: 6rem 1.25rem 4rem;
+    padding: 5rem 1.25rem;
 
     &__description {
       margin: 0 0 2rem 0;
@@ -79,6 +48,11 @@ section {
 
     &__buttons {
       justify-content: flex-start;
+    }
+
+    &__avatar {
+      width: 180px;
+      height: 180px;
     }
   }
 
@@ -88,13 +62,15 @@ section {
   }
 }
 
-// Breakpoint para Escritorio / Desktop (>= 1024px)
+// ------------------------------------------
+// BREAKPOINT: DESKTOP (>= 1024px)
+// ------------------------------------------
 @media (min-width: $breakpoint-desktop) {
   .demos__grid {
-    grid-template-columns: repeat(3, 1fr); // 3 columnas exactas para tus demos
+    grid-template-columns: repeat(3, 1fr); // Las 3 demos en una sola fila
   }
 
   .gallery__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); // Galería en 3 columnas
   }
 }

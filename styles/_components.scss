@@ -69,7 +69,6 @@
     transform: translateY(-2px);
   }
 
-  // Modificadores de botones
   &--primary {
     background-color: $accent-color;
     color: $bg-primary;
@@ -93,7 +92,11 @@
     border: 1px solid $accent-color;
     color: $accent-color;
     width: 100%;
-    margin-top: 1rem;
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
 
     &:hover {
       background-color: rgba($accent-color, 0.1);
@@ -118,13 +121,66 @@
 }
 
 // ==========================================
-// COMPONENTES: TARJETAS (CARDS)
+// COMPONENTES: TARJETAS Y HERO
 // ==========================================
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem 1.25rem;
+  text-align: center;
+
+  &__profile {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid $accent-color;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+  }
+
+  &__subtitle {
+    color: $accent-color;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__title {
+    font-size: 2.25rem;
+    color: $text-primary;
+    margin: 0.5rem 0 1rem;
+  }
+
+  &__description {
+    color: $text-secondary;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+}
+
 .card {
   background-color: $bg-card;
   border: 1px solid $border-color;
   border-radius: 12px;
   overflow: hidden;
+  display: flex; // <-- Agregamos Flexbox a la tarjeta completa
+  flex-direction: column; // <-- Para apilar la imagen arriba y el contenido abajo
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
@@ -134,11 +190,19 @@
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
   }
 
+  &__img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-bottom: 1px solid $border-color;
+    flex-shrink: 0; // <-- Evita que la imagen se aplaste
+  }
+
   &__body {
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    flex-grow: 1; // <-- EN LUGAR DE height: 100%, usamos flex-grow: 1
   }
 
   &__title {
@@ -151,7 +215,7 @@
     color: $text-secondary;
     font-size: 0.9rem;
     line-height: 1.5;
-    flex-grow: 1;
+    flex-grow: 1; // <-- Empuja el botón suavemente hacia el fondo
     margin-bottom: 1rem;
   }
 }
@@ -160,6 +224,8 @@
 // COMPONENTES: GALERÍA Y FILTROS
 // ==========================================
 .gallery {
+  padding: 3rem 0;
+
   &__filters {
     display: flex;
     justify-content: center;
@@ -188,7 +254,6 @@
   }
 }
 
-// Estructura interna de los items generados dinámicamente
 .gallery-item {
   background-color: $bg-card;
   border: 1px solid $border-color;
