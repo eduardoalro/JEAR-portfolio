@@ -3,14 +3,47 @@
     "id": "excel-01",
     "category": "excel",
     "title": "Sistema de Control Logístico / Macros",
-    "description": "Automatización en VBA para gestión de inventarios y reportes dinámicos.",
-    "image": "assets/images/gallery/Test_Logo_Image.jpg"
+    "description": "Automatización en VBA para gestión de inventarios y reportes dinámicos. Home Page",
+    "image": "assets/images/gallery/ExcelEscondidaHP.png"
   },
+
+  {
+    "id": "excel-02",
+    "category": "excel",
+    "title": "Sistema de Control Logístico / Macros",
+    "description": "Navegacion a traves de botones simples. PreviewScreen",
+    "image": "assets/images/gallery/ExcelEscondidaNav1.png"
+  },
+
+  {
+    "id": "excel-03",
+    "category": "excel",
+    "title": "Sistema de Control Logístico / Macros",
+    "description": "Formularios con bloqueos de errores. PreviewScreen",
+    "image": "assets/images/gallery/ExcelEscondidaNav2.png"
+  },
+
+  {
+    "id": "excel-04",
+    "category": "excel",
+    "title": "Sistema de Control Logístico / Macros",
+    "description": "Reportes personalizados. PreviewScreen",
+    "image": "assets/images/gallery/ExcelEscondidaNav3.png"
+  },
+
   {
     "id": "3d-01",
     "category": "3d",
     "title": "Escultura Digital & Renders",
     "description": "Modelado 3D técnico y orgánico optimizado para renderizado y manufactura.",
     "image": "assets/images/gallery/Test_Logo2_Image.jpg"
+  },
+
+  {
+    "id": "3d-01",
+    "category": "3d",
+    "title": "Modelado mecanico / SolidWorks",
+    "description": "Modelado 3D técnico y orgánico optimizado para manufactura.",
+    "image": "assets/images/gallery/Solid3DMechanic1.png"
   }
 ]
