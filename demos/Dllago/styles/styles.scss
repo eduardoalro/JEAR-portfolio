@@ -1,0 +1,1139 @@
+// ==========================================
+// VARIABLES Y CONFIGURACIÓN GLOBAL (SCSS)
+// ==========================================
+$color-primary: #342983; // Azul industrial / Morado corporativo
+$color-accent: #2563eb; // Azul acento
+$color-success: #16a34a;
+$color-danger: #dc2626;
+$color-bg: #f4f4f4;
+$color-surface: #ffffff;
+$color-text: #0f172a;
+$color-text-muted: #64748b;
+$color-border: #cbd5e1;
+
+$border-radius: 12px;
+$transition-speed: 0.2s ease;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+}
+
+body {
+  background-color: $color-bg;
+  color: $color-text;
+  line-height: 1.5;
+}
+
+// Contenedor general Mobile-First / Adaptable a Desktop (Max 95vw)
+.app {
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: $color-surface;
+  position: relative;
+  overflow-x: clip;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all $transition-speed;
+
+  @media (min-width: 1024px) {
+    width: 90vw;
+    max-width: 1350px; // 👈 Ponle un límite máximo para que no se deforme en monitores gigantes
+    margin: 2rem auto;
+    border-radius: $border-radius;
+    min-height: 90vh;
+  }
+}
+
+// Control de vistas (SPA)
+.view {
+  display: none;
+  min-height: 90vh;
+  background-color: $color-surface;
+  flex-direction: column;
+
+  &--active {
+    display: flex;
+  }
+}
+
+// ==========================================
+// BLOQUE: LOGIN-CARD Y FORMULARIO (Mantiene su estilo centrado)
+// ==========================================
+.login-card {
+  background-color: #f2f3f4;
+  margin: 5rem 1rem;
+  border-radius: 32px 0 32px 0;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
+  gap: 0.5rem;
+
+  @media (min-width: 1024px) {
+    width: 100%; // 👈 Forzamos a que tome el ancho disponible
+    max-width: 650px; // 👈 El ancho máximo que quieras (ponle 650px o 700px para que no exagere)
+    margin: 4rem auto;
+    padding: 3rem 3rem; // Margen interno más amplio
+  }
+
+  &__header {
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #1e293b;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  &__subtitle {
+    color: $color-text-muted;
+    font-size: 0.95rem;
+    font-style: italic;
+    font-weight: 100;
+  }
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+  margin-top: 2rem;
+  margin-left: 1rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  width: 100%; // 👈 Que ocupe todo el ancho de la tarjeta gris
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    width: 100%; // 👈 Que los grupos llenen el espacio
+  }
+
+  &__input {
+    width: 100%; // 👈 ¡Clave! Para que los inputs crezcan junto con la tarjeta gris
+    padding: 0.85rem;
+    font-size: 1rem;
+    border: 2px solid $color-border;
+    border-radius: $border-radius;
+    outline: none;
+
+    &:focus {
+      border-color: $color-primary;
+    }
+  }
+  &__btn {
+    background-color: #807bab;
+    color: $color-surface;
+    border: none;
+    padding: 0.9rem 2.5rem; // Un buen padding horizontal para que no se vea aplastado
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: $border-radius;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    align-self: center; // 👈 Lo centra de nuevo elegantemente en la tarjeta
+    width: auto; // 👈 Evita que se estire al 100% como los inputs
+    transition: all $transition-speed;
+
+    &:hover {
+      background-color: $color-primary;
+      transform: scale(1.02);
+    }
+
+    &:focus {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
+      background-color: $color-primary;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+// ==========================================
+// BLOQUE: HEADER Y SUB-HEADER
+// ==========================================
+
+.header {
+  background-color: $color-primary;
+  color: $color-surface;
+  padding: 1.25rem 1rem;
+  display: block;
+  gap: 0.25rem;
+  border-radius: 12px 0 12px 0;
+
+  @media (min-width: 1024px) {
+    padding: 1.5rem 2rem;
+    border-radius: $border-radius $border-radius 0 0;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    @media (min-width: 1024px) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__logout {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: white;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  &__status {
+    font-size: 0.8rem;
+    font-weight: 200;
+    font-style: italic;
+
+    &--online {
+      color: #86efac;
+    }
+  }
+}
+
+.nav-logo {
+  width: 150px;
+  height: auto;
+  margin-right: 1.5rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  mix-blend-mode: multiply; // Funde el blanco de la imagen
+}
+
+// ==========================================
+// BLOQUE: HEADER, SUB-HEADER Y ELEMENTOS STICKY
+// ==========================================
+
+// 1. Barra superior del Logo (Pegada arriba de todo)
+.nav_logo {
+  display: flex;
+  justify-content: flex-end;
+  background-color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: none;
+}
+
+.nav-logo {
+  width: 150px;
+  height: auto;
+  margin-right: 1.5rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  mix-blend-mode: multiply; // Funde el fondo blanco del logo
+}
+
+// 2. Sub-header (Título de la vista actual, ej. Catálogo e Inventario)
+.sub-header {
+  background-color: $color-primary;
+  color: $color-surface;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 12px 0 12px 0;
+
+  position: sticky;
+  top: 61px; // Se coloca exactamente debajo de la barra del logo (~61px)
+  z-index: 900;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 1024px) {
+    padding: 1.25rem 2rem;
+    border-radius: $border-radius $border-radius 0 0;
+  }
+
+  &__back {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  &__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+}
+
+// 3. Barra de Búsqueda por texto (Debajo del sub-header)
+.search-bar {
+  position: sticky;
+  top: 125px; // Se empalma de forma limpia debajo del sub-header
+  z-index: 800;
+  background-color: $color-surface;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  &__input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    border: 2px solid $color-border;
+    border-radius: $border-radius;
+    outline: none;
+
+    &:focus {
+      border-color: $color-accent;
+    }
+  }
+}
+
+// 4. Filtros Facetados / Marcas y Rines (Debajo de la barra de búsqueda)
+.facet-filters {
+  position: sticky;
+  top: 185px; // Se acomoda justo al final de la pila sticky
+  z-index: 700;
+  background-color: $color-surface;
+  padding: 0.75rem;
+  border-radius: $border-radius;
+  border: 1px solid $color-border;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+// ==========================================
+// BLOQUE: DASHBOARD-MENU (Grid Horizontal para PC)
+// ==========================================
+
+.dashboard-menu {
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (min-width: 1024px) {
+    display: grid;
+    // Reemplaza 'auto-fill' por 'auto-fit' o define columnas explícitas
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+
+  // Si deseas limitar estrictamente el menú a un máximo de 3 columnas en pantallas ultra wide (≥ 1640px)
+  @media (min-width: 1640px) {
+    grid-template-columns: repeat(
+      4,
+      1fr
+    ); // Las tarjetas se expanden equitativamente ocupando todo el ancho
+  }
+}
+
+.menu-card {
+  background: $color-surface;
+  border: 2px solid $color-border;
+  border-radius: $border-radius;
+  padding: 1.25rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: all $transition-speed;
+
+  &:hover {
+    border-color: $color-primary;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  &__icon {
+    font-size: 1.5rem;
+  }
+
+  &__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+  }
+
+  &__desc {
+    font-size: 0.85rem;
+    color: $color-text-muted;
+  }
+}
+
+// ==========================================
+// BLOQUE: MAIN-CONTENT, CATALOG, FILTERS
+// ==========================================
+.main-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (min-width: 1024px) {
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr); // Filtros distribuidos en PC
+    gap: 1rem;
+  }
+
+  &__select {
+    padding: 0.65rem;
+    font-size: 0.9rem;
+    border: 2px solid $color-border;
+    border-radius: $border-radius;
+    outline: none;
+    background: white;
+  }
+}
+
+.catalog,
+.inventory-list,
+.admin-panel,
+.cobranza-list {
+  display: grid;
+  grid-template-columns: 1fr; // Mobile: 1 columna
+  gap: 1rem;
+  width: 100%;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr); // Tablet: 2 columnas
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr); // PC/Desktop: Máximo 3 columnas
+  }
+}
+
+.item-card {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $border-radius;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: #e2e8f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    color: #334155;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  &__details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 0.85rem;
+    background: #f8fafc;
+    padding: 0.5rem;
+    border-radius: 6px;
+  }
+
+  &__btn {
+    background-color: #9088c4;
+    color: white;
+    border: none;
+    padding: 0.6rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    align-self: center;
+    transition: all $transition-speed;
+
+    &:hover {
+      background-color: $color-primary;
+      transform: scale(1.05);
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+// ==========================================
+// BLOQUE: MODAL
+// ==========================================
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center; // Centrado vertical y horizontal universal
+  z-index: 1000;
+  padding: 1rem; // Margen de seguridad para pantallas pequeñas
+  overflow-y: auto; // Permite scroll interno si la pantalla móvil es muy corta
+
+  @media (min-width: 768px) {
+    align-items: center;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+
+  &__content {
+    background: white;
+    width: 100%;
+    max-width: 480px;
+    padding: 1.5rem;
+    border-radius: $border-radius $border-radius 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @media (min-width: 768px) {
+      border-radius: $border-radius;
+      max-width: 560px; // Modal ligeramente más amplio en pantallas grandes
+    }
+  }
+
+  &__close {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  &__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  &__info-group {
+    font-size: 0.85rem;
+    background: #f8fafc;
+    padding: 0.75rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  &__label {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  &__input {
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    border: 2px solid $color-border;
+    border-radius: 8px;
+    outline: none;
+  }
+
+  &__feedback {
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.5rem;
+    border-radius: 6px;
+    text-align: center;
+
+    &--error {
+      background: #fee2e2;
+      color: $color-danger;
+    }
+
+    &--success {
+      background: #dcfce7;
+      color: $color-success;
+    }
+  }
+
+  &__action-btn {
+    background: $color-success;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:disabled {
+      background: #e2e8f0;
+      color: #94a3b8;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.email-preview {
+  background: #f8fafc;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: #334155;
+  line-height: 1.6;
+  max-height: 250px;
+  overflow-y: auto;
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+
+  strong {
+    color: $color-text;
+  }
+}
+
+// ==========================================
+// COMPONENTE: SWITCH (TOGGLE DESLIZABLE)
+// ==========================================
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+
+  &__input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .switch__slider {
+      background-color: #16a34a; // Estado Activo (Verde)
+    }
+
+    &:checked + .switch__slider::before {
+      transform: translateX(20px);
+    }
+
+    &:focus-visible + .switch__slider {
+      outline: 2px solid #2563eb;
+      outline-offset: 2px;
+    }
+  }
+
+  &__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #dc2626; // Estado Inactivo / Bloqueado (Rojo)
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 24px;
+
+    &::before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: #ffffff;
+      transition: transform 0.2s ease-in-out;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+// Estilos Auxiliares de Tarjeta
+.item-card {
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  &__role {
+    font-size: 0.85rem;
+    color: #64748b;
+  }
+
+  &__btn--secondary {
+    background: #475569;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    cursor: pointer;
+  }
+}
+
+.user-status-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  &--active {
+    color: #16a34a;
+  }
+
+  &--inactive {
+    color: #dc2626;
+  }
+}
+
+.quote-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  background-color: #f8fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+
+  &__info p {
+    margin: 0.25rem 0;
+    color: #334155;
+  }
+}
+
+.quote-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.quote-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+
+  th,
+  td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  th {
+    background-color: #0f172a;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+}
+
+.quote-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #f1f5f9;
+  border-radius: 8px;
+
+  &__total {
+    font-size: 1.25rem;
+    color: #0f172a;
+
+    strong {
+      color: #2563eb;
+      margin-left: 0.5rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.75rem;
+  }
+}
+
+#btnVaciarCotizacion {
+  background-color: #dc2626;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all $transition-speed;
+
+  &:hover {
+    background-color: #b91c1c;
+    transform: scale(1.05);
+  }
+}
+
+#btnFinalizarCompra {
+  background-color: #16a34a;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all $transition-speed;
+
+  &:hover {
+    background-color: #15803d;
+    transform: scale(1.05);
+  }
+}
+
+.quote-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  background-color: #f8fafc;
+  padding: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 1.5rem;
+
+  &__info {
+    flex: 1;
+    p {
+      margin: 0.25rem 0;
+      color: #334155;
+    }
+  }
+
+  &__client {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    margin-bottom: 0.25rem;
+    color: #1e293b;
+  }
+
+  &__select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    background-color: #ffffff;
+    font-size: 0.9rem;
+    color: #0f172a;
+
+    &:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
+  }
+}
+
+// Estilos SCSS para la Ficha Técnica del Cliente integrada
+.client-card {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.875rem;
+      color: #334155;
+    }
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    color: #0f172a;
+    white-space: nowrap;
+  }
+
+  &__select {
+    width: 100%;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #94a3b8;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    background-color: #f8fafc;
+    color: #0f172a;
+
+    &:focus {
+      outline: none;
+      border-color: #2563eb;
+      background-color: #ffffff;
+    }
+  }
+}
+
+//botones de filtros facetados
+
+.btn-facet {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #334155;
+  transition: all 0.2s ease;
+
+  &:hover,
+  &.active {
+    background-color: #342983;
+    color: #ffffff;
+    border-color: #342983;
+  }
+}
+
+// Estilo base para todos los botones del resumen de cotización
+.btn {
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all $transition-speed;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  // Modificador peligro (Vaciar)
+  &--danger {
+    background-color: #dc2626;
+    color: #ffffff;
+
+    &:hover {
+      background-color: #b91c1c;
+    }
+  }
+
+  // Modificador advertencia (Apartar 24h)
+  &--warning {
+    background-color: #d97706; // Ámbar cálido profesional
+    color: #ffffff;
+
+    &:hover {
+      background-color: #b45309;
+    }
+  }
+
+  // Modificador éxito (Finalizar Venta)
+  &--primary {
+    background-color: #16a34a;
+    color: #ffffff;
+
+    &:hover {
+      background-color: #15803d;
+    }
+  }
+}
+
+// ==========================================
+// MÓDULO DE COBRANZA Y CORREOS MASIVOS (LIMPIO Y UNIFICADO)
+// ==========================================
+
+.filters-cobranza {
+  position: relative;
+  top: auto;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  padding: 1rem;
+  border-radius: $border-radius;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  &__label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $color-text-muted;
+  }
+
+  &__input {
+    padding: 0.65rem 0.85rem;
+    font-size: 0.9rem;
+    border: 2px solid $color-border;
+    border-radius: 8px;
+    outline: none;
+
+    &:focus {
+      border-color: $color-primary;
+    }
+  }
+}
+
+.cobranza-bar {
+  position: relative;
+  top: auto;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  padding: 0.85rem 1rem;
+  border-radius: $border-radius;
+  margin-top: 0.5rem;
+
+  &__select-all {
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  &__btn-masivo {
+    background-color: $color-primary;
+    color: $color-surface;
+    border: none;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all $transition-speed;
+
+    &:hover {
+      background-color: #1d4ed8;
+    }
+  }
+}
+
+.cobranza-card {
+  background: #ffffff;
+  border: 2px solid $color-border;
+  border-radius: $border-radius;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  position: relative;
+  transition: all 0.2s ease;
+
+  &--selected {
+    border-color: #2563eb;
+    background-color: #eff6ff;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__client {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #0f172a;
+  }
+
+  &__badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: #fee2e2;
+    color: $color-danger;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  &__details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.3rem;
+    font-size: 0.85rem;
+    background: #ffffff;
+    padding: 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    color: #334155;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+}

@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DILLAGO LLANTAS - Sistema Comercial (Demo Avanzada)</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- ==========================================
+             VISTA 1: LOGIN (Control de Accesos y Roles)
+             ========================================== -->
+      <section class="view view--active" id="vistaLogin">
+        <img
+          class="logo"
+          src="http://www.dillago.com/wp-content/uploads/2017/04/cropped-logodillago-1.jpg"
+          alt="Logo Dillago Llantas"
+        />
+        <div class="login-card">
+          <div class="login-card__header">
+            <h1 class="login-card__title">DILLAGO LLANTAS</h1>
+            <p class="login-card__subtitle">Control Comercial</p>
+          </div>
+          <form class="login-form" id="formLogin">
+            <div class="login-form__group">
+              <label class="login-form__label" for="inputUsuario"
+                >Usuario</label
+              >
+              <input
+                class="login-form__input"
+                type="text"
+                id="inputUsuario"
+                placeholder="ej. yayo.admin, vendedor.carlos, credito.ana, lectura.pedro"
+                required
+              />
+            </div>
+            <div class="login-form__group">
+              <label class="login-form__label" for="inputPassword"
+                >Contraseña</label
+              >
+              <input
+                class="login-form__input"
+                type="password"
+                id="inputPassword"
+                placeholder="••••••••"
+                required
+              />
+              <span
+                id="lblLoginError"
+                style="color: #dc2626; font-size: 0.8rem; margin-top: 0.25rem"
+              ></span>
+            </div>
+            <button class="login-form__btn" type="submit">
+              Iniciar Sesión
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             VISTA 2: DASHBOARD / MENÚ PRINCIPAL DINÁMICO
+             ========================================== -->
+      <section class="view" id="vistaDashboard">
+        <div class="nav_logo">
+          <img
+            class="nav-logo"
+            src="http://www.dillago.com/wp-content/uploads/2017/04/cropped-logodillago-1.jpg"
+            alt="Logo"
+          />
+        </div>
+        <header class="header">
+          <div class="header__top">
+            <h1 class="header__title" id="lblSaludoDashboard">
+              Menú Principal
+            </h1>
+            <button class="header__logout" id="btnCerrarSesion">
+              Cerrar Sesión
+            </button>
+          </div>
+          <span class="header__status header__status--online"
+            >● Conectado a Servidor de Pruebas</span
+          >
+        </header>
+
+        <main class="dashboard-menu" id="contenedorMenuDashboard">
+          <!-- Renderizado dinámico según el rol del usuario logueado -->
+        </main>
+      </section>
+
+      <!-- ==========================================
+             VISTA 3: MÓDULO DE INVENTARIO Y VENTAS (Con Facetas)
+             ========================================== -->
+      <section class="view" id="vistaVentas">
+        <div class="nav_logo">
+          <img
+            class="nav-logo"
+            src="http://www.dillago.com/wp-content/uploads/2017/04/cropped-logodillago-1.jpg"
+            alt="Logo"
+          />
+        </div>
+        <header class="sub-header">
+          <button class="sub-header__back" data-target="vistaDashboard">
+            ← Menú
+          </button>
+          <h2 class="sub-header__title">Inventario en Vivo</h2>
+        </header>
+
+        <main class="main-content">
+          <div class="search-bar">
+            <input
+              type="text"
+              id="inputBusquedaVenta"
+              class="search-bar__input"
+              placeholder="Buscar por medida, marca o código... (ej. Michelin, 205/55)"
+              autocomplete="off"
+            />
+          </div>
+
+          <!-- Filtros Facetados (Marcas y Rines) -->
+          <div class="facet-filters">
+            <div style="font-size: 0.85rem; font-weight: 700; color: #334155">
+              Filtros:
+            </div>
+            <div
+              id="contenedorFiltrosMarcas"
+              style="display: flex; gap: 0.4rem; flex-wrap: wrap"
+            ></div>
+            <div
+              id="contenedorFiltrosRines"
+              style="display: flex; gap: 0.4rem; flex-wrap: wrap"
+            ></div>
+          </div>
+
+          <div class="catalog" id="contenedorVentas"></div>
+        </main>
+      </section>
+
+      <!-- ==========================================
+             VISTA 4: COTIZADOR, APARTADOS Y CARRITO
+             ========================================== -->
+      <section class="view" id="vistaInventario">
+        <div class="nav_logo">
+          <img
+            class="nav-logo"
+            src="http://www.dillago.com/wp-content/uploads/2017/04/cropped-logodillago-1.jpg"
+            alt="Logo"
+          />
+        </div>
+        <header class="sub-header">
+          <button class="sub-header__back" data-target="vistaDashboard">
+            ← Menú
+          </button>
+          <h2 class="sub-header__title">Cotizador y Apartados</h2>
+        </header>
+
+        <main class="main-content">
+          <div class="quote-header">
+            <div class="quote-header__info">
+              <p>
+                <strong>Folio:</strong>
+                <span id="lblFolioCotizacion">COT-0000</span>
+              </p>
+              <p>
+                <strong>Fecha:</strong>
+                <span id="lblFechaCotizacion">--/--/----</span>
+              </p>
+            </div>
+            <div class="quote-header__client">
+              <div class="client-card">
+                <div class="client-card__row">
+                  <label
+                    for="selectClienteCotizacion"
+                    class="client-card__label"
+                    ><strong>Cartera de Cliente:</strong></label
+                  >
+                  <!-- Contenedor flexible para que el select y el botón queden alineados -->
+                  <div style="display: flex; gap: 0.5rem; width: 100%">
+                    <select
+                      id="selectClienteCotizacion"
+                      class="client-card__select"
+                      style="flex: 1"
+                    >
+                      <option value="">-- Seleccionar de mi Cartera --</option>
+                    </select>
+                    <button
+                      hidden
+                      type="button"
+                      id="btnAbrirModalNuevoCliente"
+                      class="btn"
+                      style="
+                        background: #2563eb;
+                        color: #fff;
+                        font-size: 0.8rem;
+                        padding: 0.4rem 0.75rem;
+                        white-space: nowrap;
+                        border-radius: 6px;
+                        cursor: pointer;
+                      "
+                    >
+                      + Nuevo Cliente
+                    </button>
+                  </div>
+                </div>
+                <div class="client-card__row">
+                  <p><strong>RFC:</strong> <span id="lblRfc">--</span></p>
+                  <p>
+                    <strong>Crédito Disp.:</strong>
+                    <span
+                      id="lblCreditoDisp"
+                      style="color: #16a34a; font-weight: 700"
+                      >$0.00</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="quote-table-container">
+            <table class="quote-table">
+              <thead>
+                <tr>
+                  <th>Código</th>
+                  <th>Marca</th>
+                  <th>Medida</th>
+                  <th>Cant.</th>
+                  <th>P. Unitario</th>
+                  <th>Subtotal</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody id="contenedorCotizacionBody"></tbody>
+            </table>
+          </div>
+
+          <div class="quote-summary">
+            <div class="quote-summary__total">
+              <span>Total General:</span>
+              <strong id="lblTotalCotizacion">$0.00</strong>
+            </div>
+            <div class="quote-summary__actions">
+              <button id="btnVaciarCotizacion" class="btn btn--danger">
+                Vaciar
+              </button>
+              <button id="btnApartarProducto" class="btn btn--warning">
+                Apartar (24 Hrs)
+              </button>
+              <button id="btnFinalizarCompra" class="btn btn--primary">
+                Finalizar Venta / Crédito
+              </button>
+            </div>
+          </div>
+        </main>
+      </section>
+
+      <!-- ==========================================
+             VISTA 5: HISTORIAL DE COTIZACIONES DEL VENDEDOR
+             ========================================== -->
+      <section class="view" id="vistaHistorialCotizaciones">
+        <div class="nav_logo">
+          <img
+            class="nav-logo"
+            src="http://www.dillago.com/wp-content/uploads/2017/04/cropped-logodillago-1.jpg"
+            alt="Logo"
+          />
+        </div>
+        <header class="sub-header">
+          <button class="sub-header__back" data-target="vistaDashboard">
+            ← Menú
+          </button>
+          <h2 class="sub-header__title">
+            Mis Últimas Cotizaciones y Apartados
+          </h2>
+        </header>
+        <main class="main-content">
+          <div
+            class="catalog"
+            id="contenedorHistorialCotizaciones"
+            style="grid-template-columns: 1fr"
+          ></div>
+        </main>
+      </section>
+
+      <!-- ==========================================
+             VISTA 6: MÓDULO DE AUTORIZACIÓN DE CRÉDITO
+             ========================================== -->
+      <section class="view" id="vistaCredito">
+        <div class="nav_logo">
+          <img
+            class="nav-logo"
+            src="http://www.dillago.com/wp-content/uploads/2017/04/cropped-logodillago-1.jpg"
+            alt="Logo"
+          />
+        </div>
+        <header class="sub-header">
+          <button class="sub-header__back" data-target="vistaDashboard">
+            ← Menú
+          </button>
+          <h2 class="sub-header__title">Bandeja de Aprobaciones de Crédito</h2>
+        </header>
+        <main class="main-content">
+          <div
+            class="catalog"
+            id="contenedorSolicitudesCredito"
+            style="grid-template-columns: 1fr"
+          ></div>
+        </main>
+      </section>
+
+      <!-- ==========================================
+             VISTA 7: MÓDULO DE COBRANZA Y CORREOS MASIVOS
+             ========================================== -->
+      <!-- VISTA 7: MÓDULO DE COBRANZA Y CORREOS MASIVOS -->
+      <section class="view" id="vistaCobranza">
+        <div class="nav_logo">
+          <img
+            class="nav-logo"
+            src="http://www.dillago.com/wp-content/uploads/2017/04/cropped-logodillago-1.jpg"
+            alt="Logo"
+          />
+        </div>
+        <header class="sub-header">
+          <button class="sub-header__back" data-target="vistaDashboard">
+            ← Menú
+          </button>
+          <h2 class="sub-header__title">Cobranza / mails</h2>
+        </header>
+
+        <main class="main-content">
+          <div class="filters-cobranza">
+            <div class="filters-cobranza__group">
+              <label class="filters-cobranza__label" for="txtBuscarCliente"
+                >Buscar Cliente / Email</label
+              >
+              <input
+                type="text"
+                id="txtBuscarCliente"
+                class="filters-cobranza__input"
+                placeholder="Ej. Transportes, pagos@..."
+              />
+            </div>
+            <div class="filters-cobranza__group">
+              <label class="filters-cobranza__label" for="numMontoMinimo"
+                >Monto Mín ($)</label
+              >
+              <input
+                type="number"
+                id="numMontoMinimo"
+                class="filters-cobranza__input"
+                placeholder="0.00"
+              />
+            </div>
+            <div class="filters-cobranza__group">
+              <label class="filters-cobranza__label" for="numDiasVencidos"
+                >Días Vencidos Mín</label
+              >
+              <input
+                type="number"
+                id="numDiasVencidos"
+                class="filters-cobranza__input"
+                placeholder="0"
+              />
+            </div>
+
+            <!-- Selector de Excepciones Rápidas -->
+            <div
+              class="filters-cobranza__group"
+              style="grid-column: 1 / -1; margin-top: 0.5rem"
+            >
+              <label
+                class="filters-cobranza__label"
+                for="selectExcluirCliente"
+                style="color: #dc2626; font-weight: 700"
+              >
+                🚫 Lista Negra / Excepciones de Envío (Mandar a todos excepto
+                a...):
+              </label>
+              <div style="display: flex; gap: 0.5rem; align-items: center">
+                <select
+                  id="selectExcluirCliente"
+                  class="filters-cobranza__input"
+                  style="flex: 1"
+                >
+                  <option value="">
+                    -- Seleccionar cliente para agregar a excepciones --
+                  </option>
+                </select>
+              </div>
+              <div
+                id="contenedorTagsExcluidos"
+                style="
+                  display: flex;
+                  gap: 0.4rem;
+                  flex-wrap: wrap;
+                  margin-top: 0.5rem;
+                "
+              ></div>
+            </div>
+
+            <div class="cobranza-bar" style="grid-column: 1 / -1">
+              <label class="cobranza-bar__select-all">
+                <input type="checkbox" id="chkSeleccionarTodos" /> Seleccionar
+                Todos (Menos Excepciones)
+              </label>
+              <button class="cobranza-bar__btn-masivo" id="btnEnviarMasivo">
+                📧 Enviar seleccionados (<span id="lblCantSeleccionados">0</span
+                >)
+              </button>
+            </div>
+          </div>
+
+          <div class="cobranza-list" id="contenedorCobranza"></div>
+        </main>
+      </section>
+
+      <!-- ==========================================
+             VISTA 8: PANEL ADMIN (USUARIOS)
+             ========================================== -->
+      <section class="view" id="vistaAdmin">
+        <div class="nav_logo">
+          <img
+            class="nav-logo"
+            src="http://www.dillago.com/wp-content/uploads/2017/04/cropped-logodillago-1.jpg"
+            alt="Logo"
+          />
+        </div>
+        <header class="sub-header">
+          <button class="sub-header__back" data-target="vistaDashboard">
+            ← Menú
+          </button>
+          <h2 class="sub-header__title">Panel de administracion</h2>
+        </header>
+        <main class="main-content">
+          <div class="admin-panel" id="contenedorUsuarios"></div>
+        </main>
+      </section>
+
+      <!-- ==========================================
+             MODAL DE VALIDACIÓN DE MARGEN Y APARTADO
+             ========================================== -->
+      <div class="modal" id="modalVenta" hidden>
+        <div class="modal__content">
+          <button class="modal__close" id="btnCerrarModal">&times;</button>
+          <h2 class="modal__title" id="modalNombreLlanta">Llanta</h2>
+          <div class="modal__info-group">
+            <p>Costo Neto: <strong id="modalCosto">$0.00</strong></p>
+            <p>
+              Precio Mínimo (15% Margen):
+              <strong id="modalPrecioMinimo">$0.00</strong>
+            </p>
+          </div>
+          <div class="modal__form-group">
+            <label for="inputPrecioVenta" class="modal__label"
+              >Precio Unitario Propuesto:</label
+            >
+            <input
+              type="number"
+              id="inputPrecioVenta"
+              class="modal__input"
+              step="0.01"
+            />
+          </div>
+          <div class="modal__feedback" id="modalFeedback"></div>
+          <button class="modal__action-btn" id="btnAccionApartar" disabled>
+            Agregar al Cotizador
+          </button>
+        </div>
+      </div>
+      <!-- ==========================================
+             MODAL: REGISTRO RÁPIDO DE NUEVO CLIENTE
+             ========================================== -->
+      <div class="modal" id="modalNuevoCliente" hidden>
+        <div class="modal__content">
+          <button class="modal__close" id="btnCerrarModalCliente">
+            &times;
+          </button>
+          <h2 class="modal__title">➕ Registrar Nuevo Cliente en Cartera</h2>
+
+          <form
+            id="formNuevoCliente"
+            class="modal__form-group"
+            style="gap: 0.75rem"
+          >
+            <div>
+              <label class="modal__label" for="txtNuevaRazonSocial"
+                >Razón Social / Nombre Comercial:</label
+              >
+              <input
+                type="text"
+                id="txtNuevaRazonSocial"
+                class="modal__input"
+                placeholder="ej. Transportes Guadalajara S.A."
+                required
+              />
+            </div>
+
+            <div
+              style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem"
+            >
+              <div>
+                <label class="modal__label" for="txtNuevoRfc">RFC:</label>
+                <input
+                  type="text"
+                  id="txtNuevoRfc"
+                  class="modal__input"
+                  placeholder="TGU120304AB1"
+                  style="text-transform: uppercase"
+                  required
+                />
+              </div>
+              <div>
+                <label class="modal__label" for="txtNuevoCp"
+                  >Código Postal:</label
+                >
+                <input
+                  type="text"
+                  id="txtNuevoCp"
+                  class="modal__input"
+                  placeholder="44100"
+                  maxlength="5"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="modal__label" for="txtNuevoCorreo"
+                >Correo de Facturación / Contacto:</label
+              >
+              <input
+                type="email"
+                id="txtNuevoCorreo"
+                class="modal__input"
+                placeholder="compras@empresa.com"
+                required
+              />
+            </div>
+
+            <div>
+              <label class="modal__label" for="numNuevoCredito"
+                >Límite de Crédito Solicitado ($):</label
+              >
+              <input
+                type="number"
+                id="numNuevoCredito"
+                class="modal__input"
+                placeholder="0.00 (0 para Contado)"
+                step="1000"
+                min="0"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="modal__action-btn"
+              style="margin-top: 0.5rem; background: #16a34a; color: #fff"
+            >
+              💾 Guardar y Seleccionar Cliente
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="./JS/main.js"></script>
+  </body>
+</html>
