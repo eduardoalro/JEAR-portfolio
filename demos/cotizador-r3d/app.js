@@ -101,12 +101,12 @@ function renderInsumosCheckboxes() {
   container.innerHTML = insumosExtra
     .map(
       (i) => `
-    <div class="insumo-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-      <label style="display: flex; align-items: center; gap: 8px; flex: 1; font-size: 0.9rem;">
+    <div class="insumo-row">
+      <label class="insumo-label">
         <input type="checkbox" value="${i.id}" class="insumo-check" data-costo="${i.costo}">
         ${i.nombre} ($${i.costo} c/u)
       </label>
-      <input type="number" value="1" min="1" class="insumo-cant" data-id="${i.id}" style="width: 70px; padding: 6px; border: 1px solid var(--border-color); border-radius: var(--radius);">
+      <input type="number" value="1" min="1" class="insumo-cant" data-id="${i.id}">
     </div>
   `,
     )
@@ -118,10 +118,12 @@ function renderInsumosCheckboxes() {
   });
 }
 
-// Motor de Cálculo en tiempo real
+// Motor de Cálculo en tiempo real actualizado con costos unitarios
 function calcularEnVivo() {
   const pesoSlicer =
     parseFloat(document.getElementById("peso-slicer").value) || 0;
+  const piezasPlaca =
+    parseInt(document.getElementById("piezas-placa").value) || 1;
   const horasImp = parseFloat(document.getElementById("horas-imp").value) || 0;
   const horasPersona =
     parseFloat(document.getElementById("horas-persona").value) || 0;
@@ -149,7 +151,7 @@ function calcularEnVivo() {
   // 4. Créditos IA
   const costoCreditos = creditosIa * CONFIG_EQUIPO.costoCreditoIa;
 
-  // 5. Insumos extra seleccionados
+  // 5. Insumos extra seleccionados (Ojo: los insumos extra se multiplican por su cantidad unitaria configurada)
   let costoInsumosExtra = 0;
   document.querySelectorAll(".insumo-check:checked").forEach((chk) => {
     const id = chk.value;
@@ -159,33 +161,56 @@ function calcularEnVivo() {
     costoInsumosExtra += costoUnitario * cantidad;
   });
 
-  const costoBase =
+  const costoBasePlaca =
     costoFilamento +
     costoEnergia +
     costoDesgaste +
     costoCreditos +
     costoInsumosExtra;
-  const costoTotal = costoBase + horasPersona * CONFIG_EQUIPO.costoHoraPersona;
+  const costoTotalPlaca =
+    costoBasePlaca + horasPersona * CONFIG_EQUIPO.costoHoraPersona;
 
-  // Factores de ganancia (Amigos 2.5x, Público 3.0x, Detalle 3.5x)
-  const sugAmigos = redondearCinco(costoTotal * 2.5);
-  const sugPublico = redondearCinco(costoTotal * 3.0);
-  const sugDetalle = redondearCinco(costoTotal * 3.5);
+  // --- CÁLCULO UNITARIO (Por pieza individual) ---
+  const costoBaseUnitario = costoBasePlaca / piezasPlaca;
+  const costoTotalUnitario = costoTotalPlaca / piezasPlaca;
 
+  // Factores de ganancia aplicados al costo UNITARIO (Amigos 2.5x, Público 3.0x, Detalle 3.5x)
+  const sugAmigos = redondearCinco(costoTotalUnitario * 2.5);
+  const sugPublico = redondearCinco(costoTotalUnitario * 3.0);
+  const sugDetalle = redondearCinco(costoTotalUnitario * 3.5);
+
+  // Pintar en pantalla los valores de la placa completa
   document.getElementById("res-base").innerText =
-    `$${costoBase.toFixed(2)} MXN`;
+    `$${costoBasePlaca.toFixed(2)} MXN`;
   document.getElementById("res-total").innerText =
-    `$${costoTotal.toFixed(2)} MXN`;
+    `$${costoTotalPlaca.toFixed(2)} MXN`;
+
+  // Pintar los costos unitarios
+  document.getElementById("res-unitario-base").innerText =
+    `$${costoBaseUnitario.toFixed(2)} MXN`;
+  document.getElementById("res-unitario-total").innerText =
+    `$${costoTotalUnitario.toFixed(2)} MXN`;
+
+  // Pintar precios sugeridos por pieza individual
   document.getElementById("precio-amigos").innerText = `$${sugAmigos}`;
   document.getElementById("precio-publico").innerText = `$${sugPublico}`;
   document.getElementById("precio-detalle").innerText = `$${sugDetalle}`;
 
-  return { costoBase, costoTotal, sugAmigos, sugPublico, sugDetalle };
+  return {
+    costoBase: costoBasePlaca,
+    costoTotal: costoTotalPlaca,
+    costoTotalUnitario,
+    piezasPlaca,
+    sugAmigos,
+    sugPublico,
+    sugDetalle,
+  };
 }
 
 function setupListeners() {
   [
     "peso-slicer",
+    "piezas-placa",
     "horas-imp",
     "horas-persona",
     "creditos-ia",
@@ -347,12 +372,12 @@ function renderHistorial(filtro = "") {
         <h3>${c.nombre}</h3>
         <span style="font-size:0.75rem; color:#666;">${c.fecha || "Reciente"}</span>
       </div>
-      <p style="font-size:0.85rem; color:#555; margin:4px 0;">Filamento: ${c.filamentoUsado || "Estándar"}</p>
+      <p style="font-size:0.85rem; color:#555; margin:4px 0;">Filamento: ${c.filamentoUsado || "Estándar"} | Lote: ${c.piezasPlaca || 1} pza(s)</p>
       
       <div class="pricing-grid" style="margin:8px 0;">
-        <div class="price-box"><span>Amigos</span><strong>$${c.sugAmigos}</strong></div>
-        <div class="price-box featured"><span>Público</span><strong>$${c.sugPublico}</strong></div>
-        <div class="price-box"><span>Detalle</span><strong>$${c.sugDetalle}</strong></div>
+        <div class="price-box"><span>Amigos (u.)</span><strong>$${c.sugAmigos}</strong></div>
+        <div class="price-box featured"><span>Público (u.)</span><strong>$${c.sugPublico}</strong></div>
+        <div class="price-box"><span>Detalle (u.)</span><strong>$${c.sugDetalle}</strong></div>
       </div>
 
       <button onclick="window.eliminarCotizacion(${idx})" class="btn-secondary" style="background:#d9534f; padding:6px; font-size:0.8rem;">Eliminar</button>

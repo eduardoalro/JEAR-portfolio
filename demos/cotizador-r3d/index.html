@@ -43,15 +43,19 @@
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="peso-slicer">Peso en Slicer (g)</label>
+              <label for="peso-slicer">Peso Total Placa en Slicer (g)</label>
               <input type="number" id="peso-slicer" value="125" min="1" />
             </div>
+            <div class="form-group">
+              <label for="piezas-placa">Piezas que salen en la placa</label>
+              <input type="number" id="piezas-placa" value="1" min="1" />
+            </div>
+          </div>
+          <div class="form-row">
             <div class="form-group">
               <label for="horas-imp">Horas Impresión</label>
               <input type="number" id="horas-imp" value="9" min="0" />
             </div>
-          </div>
-          <div class="form-row">
             <div class="form-group">
               <label for="horas-persona">Horas Mano de Obra</label>
               <input
@@ -62,10 +66,10 @@
                 min="0"
               />
             </div>
-            <div class="form-group">
-              <label for="creditos-ia">Créditos IA (Meshy)</label>
-              <input type="number" id="creditos-ia" value="0" min="0" />
-            </div>
+          </div>
+          <div class="form-group">
+            <label for="creditos-ia">Créditos IA (Meshy)</label>
+            <input type="number" id="creditos-ia" value="0" min="0" />
           </div>
         </section>
 
@@ -86,7 +90,21 @@
             <span>Costo Total (Con Mano de Obra):</span>
             <strong id="res-total">$0.00 MXN</strong>
           </div>
+          <!-- Bloque unitario usando clases CSS -->
+          <div class="unit-breakdown">
+            <div class="result-row unit-row-sm">
+              <span>Costo Unitario de Producción:</span>
+              <strong id="res-unitario-base">$0.00 MXN</strong>
+            </div>
+            <div class="result-row unit-row-main">
+              <span>Costo Unitario Total:</span>
+              <strong id="res-unitario-total">$0.00 MXN</strong>
+            </div>
+          </div>
           <hr />
+          <p class="pricing-subtitle">
+            Precios sugeridos unitarios (por pieza):
+          </p>
           <div class="pricing-grid">
             <div class="price-box">
               <span>Amigos (2.5x)</span>
