@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cotizador R3D - Creative r3d</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Iconos para pantalla de inicio en celulares -->
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.jpg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="logo.jpg" />
+  </head>
+  <body>
+    <div class="cotizador-app">
+      <header class="header">
+        <img src="logo.jpg" alt="Creative r3d Logo" class="header-logo" />
+        <h1>r3d CREATIVE</h1>
+        <p>Cotizador de Impresión 3D</p>
+      </header>
+
+      <!-- Navegación por pestañas -->
+      <nav class="nav-tabs">
+        <button class="tab-btn active" data-tab="cotizador">Cotizar</button>
+        <button class="tab-btn" data-tab="inventario">Insumos</button>
+        <button class="tab-btn" data-tab="historial">Historial</button>
+        <button class="tab-btn" data-tab="configuracion">Config</button>
+      </nav>
+
+      <!-- Módulo 1: Cotizador Principal -->
+      <main id="cotizador" class="tab-content active">
+        <section class="card">
+          <h2>1. Datos de la Pieza</h2>
+          <div class="form-group">
+            <label for="pieza-nombre">Nombre de la Pieza</label>
+            <input
+              type="text"
+              id="pieza-nombre"
+              placeholder="Ej: Busto Goku Chibi"
+            />
+          </div>
+          <div class="form-group">
+            <label for="filamento-select">Seleccionar Filamento</label>
+            <select id="filamento-select"></select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="peso-slicer">Peso en Slicer (g)</label>
+              <input type="number" id="peso-slicer" value="125" min="1" />
+            </div>
+            <div class="form-group">
+              <label for="horas-imp">Horas Impresión</label>
+              <input type="number" id="horas-imp" value="9" min="0" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="horas-persona">Horas Mano de Obra</label>
+              <input
+                type="number"
+                id="horas-persona"
+                value="0.5"
+                step="0.1"
+                min="0"
+              />
+            </div>
+            <div class="form-group">
+              <label for="creditos-ia">Créditos IA (Meshy)</label>
+              <input type="number" id="creditos-ia" value="0" min="0" />
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>2. Insumos Extra (Opcional)</h2>
+          <div id="insumos-extra-list" class="checkbox-list">
+            <!-- Se llena dinámicamente con JS -->
+          </div>
+        </section>
+
+        <section class="card results-card">
+          <h2>3. Resultados del Cálculo</h2>
+          <div class="result-row">
+            <span>Costo de Producción Base:</span>
+            <strong id="res-base">$0.00 MXN</strong>
+          </div>
+          <div class="result-row">
+            <span>Costo Total (Con Mano de Obra):</span>
+            <strong id="res-total">$0.00 MXN</strong>
+          </div>
+          <hr />
+          <div class="pricing-grid">
+            <div class="price-box">
+              <span>Amigos (2.5x)</span>
+              <h3 id="precio-amigos">$0</h3>
+            </div>
+            <div class="price-box featured">
+              <span>Público General (3.0x)</span>
+              <h3 id="precio-publico">$0</h3>
+            </div>
+            <div class="price-box">
+              <span>Detalle / Artístico (3.5x)</span>
+              <h3 id="precio-detalle">$0</h3>
+            </div>
+          </div>
+          <button id="btn-guardar-cotizacion" class="btn-primary">
+            Guardar Cotización
+          </button>
+        </section>
+      </main>
+
+      <!-- Módulo 2: Inventario de Insumos -->
+      <section id="inventario" class="tab-content">
+        <div class="card">
+          <h2>Registrar Filamento</h2>
+          <div class="form-group">
+            <label>Nombre / Color del Filamento</label>
+            <input
+              type="text"
+              id="fil-nombre"
+              placeholder="Ej: PLA Esmeralda M3D"
+            />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Precio por Rollo ($)</label>
+              <input type="number" id="fil-precio" value="350" />
+            </div>
+            <div class="form-group">
+              <label>Gramaje (g)</label>
+              <input type="number" id="fil-gramos" value="1000" />
+            </div>
+          </div>
+          <button id="btn-add-filamento" class="btn-secondary">
+            Agregar Filamento
+          </button>
+        </div>
+
+        <div class="card">
+          <h2>Registrar Insumo Secundario (Imanes, Argollas, etc.)</h2>
+          <div class="form-group">
+            <label>Nombre del Insumo</label>
+            <input
+              type="text"
+              id="ins-nombre"
+              placeholder="Ej: Imán Neodimio 10x2mm"
+            />
+          </div>
+          <div class="form-group">
+            <label>Costo Unitario ($)</label>
+            <input type="number" id="ins-costo" value="2.50" step="0.5" />
+          </div>
+          <button id="btn-add-insumo" class="btn-secondary">
+            Agregar Insumo
+          </button>
+        </div>
+
+        <div class="card">
+          <h3>Inventario Actual</h3>
+          <div id="lista-inventario-visual"></div>
+        </div>
+      </section>
+
+      <!-- Módulo 3: Historial -->
+      <section id="historial" class="tab-content">
+        <div class="card">
+          <h2>Historial de Piezas Cotizadas</h2>
+          <input
+            type="text"
+            id="buscador-historial"
+            placeholder="Buscar pieza guardada..."
+            class="search-input"
+          />
+          <div id="contenedor-historial"></div>
+        </div>
+      </section>
+      <!-- Módulo 4: Configuración -->
+      <section id="configuracion" class="tab-content">
+        <div class="card">
+          <h2>Parámetros del Equipo y Costos Fijos</h2>
+          <div class="form-group">
+            <label>Precio de la Impresora ($ MXN)</label>
+            <input type="number" id="cfg-precio-imp" value="10000" />
+          </div>
+          <div class="form-group">
+            <label>Vida Útil Estimada (Horas)</label>
+            <input type="number" id="cfg-vida-util" value="5000" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Consumo (Watts)</label>
+              <input type="number" id="cfg-watts" value="300" />
+            </div>
+            <div class="form-group">
+              <label>Costo de Luz kWh ($)</label>
+              <input type="number" id="cfg-kwh" value="6.00" step="0.5" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Costo Hora Mano de Obra ($)</label>
+              <input type="number" id="cfg-mano-obra" value="60.00" />
+            </div>
+            <div class="form-group">
+              <label>Costo por 1,000 Créditos IA ($)</label>
+              <input type="number" id="cfg-creditos" value="450" />
+            </div>
+          </div>
+          <button id="btn-guardar-config" class="btn-primary">
+            Guardar Configuración
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Script principal apuntando a app.js -->
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
