@@ -34,16 +34,80 @@
   {
     "id": "3d-01",
     "category": "3d",
-    "title": "Escultura Digital & Renders",
-    "description": "Modelado 3D técnico y orgánico optimizado para renderizado y manufactura.",
-    "image": "assets/images/gallery/Test_Logo2_Image.jpg"
-  },
-
-  {
-    "id": "3d-01",
-    "category": "3d",
     "title": "Modelado mecanico / SolidWorks",
     "description": "Modelado 3D técnico y orgánico optimizado para manufactura.",
     "image": "assets/images/gallery/Solid3DMechanic1.png"
+  },
+
+  {
+    "id": "3d-02",
+    "category": "3d",
+    "title": "Modelado mecanico / SolidWorks",
+    "description": "Modelado 3D técnico y orgánico optimizado para manufactura.",
+    "image": "assets/images/gallery/Solid3DMechanic2.png"
+  },
+
+  {
+    "id": "3d-03",
+    "category": "3d",
+    "title": "Modelado mecanico / SolidWorks",
+    "description": "Modelado 3D técnico y orgánico optimizado para manufactura.",
+    "image": "assets/images/gallery/Solid3DMechanic3.jpg"
+  },
+
+  {
+    "id": "3d-04",
+    "category": "3d",
+    "title": "Modelado mecanico / SolidWorks",
+    "description": "Modelado 3D técnico y orgánico optimizado para manufactura.",
+    "image": "assets/images/gallery/Solid3DMechanic4.jpg"
+  },
+
+  {
+    "id": "3d-05",
+    "category": "3d",
+    "title": "Modelado mecanico / SolidWorks",
+    "description": "Modelado 3D técnico y orgánico optimizado para manufactura.",
+    "image": "assets/images/gallery/Solid3DMechanic5.jpg"
+  },
+
+  {
+    "id": "3d-06",
+    "category": "3d",
+    "title": "Modelado mecanico / SolidWorks",
+    "description": "Modelado 3D técnico y orgánico optimizado para manufactura.",
+    "image": "assets/images/gallery/Solid3DMechanic6.jpg"
+  },
+
+  {
+    "id": "3d-07",
+    "category": "3d",
+    "title": "Modelado mecanico / SolidWorks",
+    "description": "Modelado 3D técnico optimizado para live 3d preview.",
+    "image": "assets/images/gallery/Solid3DMechanic7.jpg"
+  },
+
+  {
+    "id": "3d-08",
+    "category": "3d",
+    "title": "Modelado Artistico / Blender",
+    "description": "Modelado 3D realizado en Blender y otras herramientas optimizado para impresion 3D.",
+    "image": "assets/images/gallery/BlenderSculture1.png"
+  },
+
+  {
+    "id": "3d-09",
+    "category": "3d",
+    "title": "Modelado Artistico / Blender",
+    "description": "Modelado 3D realizado en Blender y otras herramientas optimizado para impresion 3D.",
+    "image": "assets/images/gallery/BlenderSculture2.png"
+  },
+
+  {
+    "id": "3d-10",
+    "category": "3d",
+    "title": "Modelado Artistico / Blender",
+    "description": "Modelado 3D realizado en Blender y otras herramientas optimizado para impresion 3D.",
+    "image": "assets/images/gallery/BlenderSculture3.png"
   }
 ]
