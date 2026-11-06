@@ -109,5 +109,21 @@
     "title": "Modelado Artistico / Blender",
     "description": "Modelado 3D realizado en Blender y otras herramientas optimizado para impresion 3D.",
     "image": "assets/images/gallery/BlenderSculture3.png"
+  },
+
+  {
+    "id": "3d-11",
+    "category": "3d",
+    "title": "Modelado Artistico / Blender",
+    "description": "Modelado 3D realizado en Blender y otras herramientas optimizado para impresion 3D.",
+    "image": "assets/images/gallery/BlenderSculture4.png"
+  },
+
+  {
+    "id": "3d-12",
+    "category": "3d",
+    "title": "Modelado Artistico / Blender",
+    "description": "Modelado 3D realizado en Blender y otras herramientas optimizado para impresion 3D.",
+    "image": "assets/images/gallery/BlenderSculture5.png"
   }
 ]
